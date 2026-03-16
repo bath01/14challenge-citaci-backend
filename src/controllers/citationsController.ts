@@ -71,9 +71,9 @@ export async function getCitations(req: Request, res: Response, next: NextFuncti
   }
 }
 
-export async function getCitationById(req: Request, res: Response, next: NextFunction) {
+export async function getCitationById(req: Request<{ id: string }>, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = String(req.params.id);
     const citation = await prisma.citation.findUnique({ where: { id } });
 
     if (!citation) {
@@ -119,9 +119,9 @@ export async function bulkCreateCitations(req: Request, res: Response, next: Nex
   }
 }
 
-export async function updateCitation(req: Request, res: Response, next: NextFunction) {
+export async function updateCitation(req: Request<{ id: string }>, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = String(req.params.id);
 
     const parsed = citationSchema.partial().safeParse(req.body);
 
@@ -143,9 +143,9 @@ export async function updateCitation(req: Request, res: Response, next: NextFunc
   }
 }
 
-export async function deleteCitation(req: Request, res: Response, next: NextFunction) {
+export async function deleteCitation(req: Request<{ id: string }>, res: Response, next: NextFunction) {
   try {
-    const { id } = req.params;
+    const id = String(req.params.id);
 
     const exists = await prisma.citation.findUnique({ where: { id } });
     if (!exists) {

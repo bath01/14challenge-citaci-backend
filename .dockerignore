@@ -1,0 +1,27 @@
+# Dépendances et build
+node_modules
+dist
+
+# Variables d'environnement (ne jamais inclure dans l'image)
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# Logs
+npm-debug.log*
+*.log
+
+# Éditeurs et OS
+.DS_Store
+.vscode
+*.swp
+*.swo
+
+# Fichiers de test et doc
+*.md
+*.test.ts
+*.spec.ts
